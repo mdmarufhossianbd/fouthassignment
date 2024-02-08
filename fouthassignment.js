@@ -25,8 +25,7 @@ function checkName(name) {
         const errorMessage = "invalid";
         return errorMessage;
     };
-    const lastLetter = name.slice(-1).toLowerCase();
-    
+    const lastLetter = name.slice(-1).toLowerCase();    
     const lastLetters = ['y', 'i', 'e', 'o', 'u', 'w'];
     if (lastLetters.includes(lastLetter)) {
         const message = "Good Name";
@@ -35,10 +34,53 @@ function checkName(name) {
     else {
         const message = "Bad Name";
         return message;
-    }
-}
+    };
+};
 checkName("Salman");
-checkName("RAFEE")
-checkName("Jhankar")
-checkName(199)
-checkName(["Rashed"])
+checkName("RAFEE");
+checkName("Jhankar");
+checkName(199);
+checkName(["Rashed"]);
+
+// Problem 3
+function deleteInvalids(array) {
+    if (!Array.isArray(array)) {
+        const errorMessage = "Invalid Array";
+        return errorMessage;
+    };
+    const numberchecker = array.filter(item => typeof item === 'number' && !isNaN(item));   
+    return numberchecker;
+};
+deleteInvalids([1, null, undefined, 18, -19, NaN, "12", [1, 2], { ob: "lala" }]);
+deleteInvalids(["1" , {num:2} , NaN ]);
+deleteInvalids([ 1 , 2 , -3 ]);
+deleteInvalids({num: [ 1 , 2 , 3 ]});
+
+// problem 4
+
+// problem 5
+function monthlySavings(arr, livingCost) {
+    if (!Array.isArray(arr) || typeof livingCost !== 'number') {
+        return "invalid input";
+    };
+    let totalIncome = 0;
+    let totalTax = 0;
+    for (let i = 0; i < arr.length; i++) {
+        totalIncome = totalIncome + arr[i];
+        if (arr[i] >= 3000) {
+            const tax = arr[i] * 20 /100;
+            totalTax = totalTax + tax;
+        }
+    }
+    const netIncome = totalIncome - totalTax;
+    const savings = netIncome - livingCost;
+    if (savings >= 0) {
+        return savings;
+    } else {
+        return "earn more";
+    };
+};
+monthlySavings([1000, 2000, 3000], 5400);
+monthlySavings([ 1000 , 2000 , 2500 ] , 5000);
+monthlySavings([ 900 , 2700 , 3400] , 10000);
+monthlySavings(100, [ 900 , 2700 , 3400]);
